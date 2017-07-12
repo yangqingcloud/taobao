@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<h1>学生列表</h1>
+	<table border="1" width="600px">
+		<tr>
+			<td>id</td>
+			<td>名字</td>
+			<td>年龄</td>
+			<td>班级</td>
+			<td>操作</td>
+		</tr>
+		
+	</table>
+</body>
+<script type="text/javascript" src="js/jquery-1.8.0.js" ></script>
+<script>
+	$(function(){
+		$.ajax({
+			type:"get",
+			url:"do/list_do.php",
+			dataType:"json",
+			success:function(obj){
+				for(var i=0;i<obj.length;i++){
+					var tr = "<tr><td>"+obj[i].id+"</td><td>"+obj[i].sname+"</td><td>"+obj[i].score+"</td><td>"+obj[i].cname+"</td><td><a href='do/del_do.php?id="+obj[i].id+"'>删除</a></td></tr>";
+					$("table").append(tr);
+				}
+			}
+		});
+	})
+</script>
+	
+</html>
